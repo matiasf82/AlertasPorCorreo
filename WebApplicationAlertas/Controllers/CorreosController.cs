@@ -13,6 +13,7 @@ namespace WebApplicationAlertas.Controllers
     {
         private readonly ApplicationDbContext context;
 
+        //inyeco el ApplicaionDbContext
         public CorreosController(ApplicationDbContext context)
         {
             this.context = context;
