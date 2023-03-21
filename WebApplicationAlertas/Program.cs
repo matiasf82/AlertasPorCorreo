@@ -1,5 +1,7 @@
+using Entidades;
 using Microsoft.EntityFrameworkCore;
 using WebApplicationAlertas;
+using WebApplicationAlertas.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,9 @@ builder.Services.AddSwaggerGen();
 
 //inyeccion de dependencias
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmptSetings"));
+builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

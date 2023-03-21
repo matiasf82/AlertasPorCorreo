@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
-
+using WebApplicationAlertas.Services;
 
 namespace WebApplicationAlertas.Controllers
 {
@@ -11,36 +11,30 @@ namespace WebApplicationAlertas.Controllers
     [ApiController]
     public class CorreosController : ControllerBase
     {
-        private readonly ApplicationDbContext context;
+        private readonly IEmailSenderService service;
 
-        //inyeco el ApplicaionDbContext
-        public CorreosController(ApplicationDbContext context)
+        public CorreosController(ApplicationDbContext context, IEmailSenderService service)
         {
-            this.context = context;
+            this.service = service;
         }
 
 
-        [HttpPost("Insertar")]
-        public async Task<ActionResult> Insertar(Correo correo)
+        [HttpPost("Post")]
+        public async Task<ActionResult> Post(Correo correo)
         {
-            if(correo is null)
-            {
-                return NoContent();
-            }
-
-            context.Add(correo);
-            await context.SaveChangesAsync();
-            return Ok();
+           return await service.PostAsync(correo);
         }
 
+        [HttpGet("GetAll")]
         public async Task<ActionResult> GetAll()
         {
-            var lista = await context.Correos.ToListAsync();
-            if(lista is null)
-            {
-                return NoContent();
-            }
-            return Ok(lista);
+            return await service.GetAllAsync();
+        }
+
+        [HttpPost("SendEmailAsync")]
+        public async Task SendEmailAsync(MailRequest mail)
+        {
+            await service.SendEmailAsync(mail);
         }
     }
 }

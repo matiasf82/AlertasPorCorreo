@@ -11,7 +11,7 @@ namespace ConsoleApp
 {
     public class Metodos
     {
-        private readonly string url = "https://localhost:7152/api/Correos/Insertar";
+        private readonly string url = "https://localhost:7152/api/Correos/SendEmailAsync";
         private HttpClient cliente = new();
 
         //usando PostAsJsonAsync
@@ -29,8 +29,7 @@ namespace ConsoleApp
             if (respuesta.IsSuccessStatusCode)
             {
                 Console.WriteLine("OK");
-            }
-           
+            }           
         }
 
         //usando PostAsync() --> con este se puede enviar cualquier cosa (un archivo por ejemplo) en el paramero "contenido"
@@ -54,6 +53,20 @@ namespace ConsoleApp
             }
         }
 
+       public async Task EnviarMail()
+        {
+            var mail = new MailRequest();
+            mail.Email = "matiasferreyra82@outlook.com.ar";
+            mail.Subject = "asunto del mail";
+            mail.Body = "cuerpo del mail, prueba numero 3";
 
+            var json = JsonSerializer.Serialize(mail);
+            var contenido = new StringContent(json, Encoding.UTF8, "application/json");
+            var respuesta = await cliente.PostAsJsonAsync(url, mail);
+            if (respuesta.IsSuccessStatusCode)
+            {
+                Console.WriteLine("OK");
+            }
+        }
     }
 }
