@@ -32,9 +32,20 @@ namespace WebApplicationAlertas.Controllers
         }
 
         [HttpPost("SendEmailAsync")]
-        public async Task SendEmailAsync(MailRequest mail)
+        public async Task<ActionResult> SendEmailAsync(MailRequest mail)
         {
-            await service.SendEmailAsync(mail);
+            try
+            {
+                var algo = await service.SendEmailAsync(mail);
+                return algo;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
+            
         }
     }
 }

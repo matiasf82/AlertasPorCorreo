@@ -53,20 +53,20 @@ namespace ConsoleApp
             }
         }
 
-       public async Task EnviarMail()
-        {
-            var mail = new MailRequest();
-            mail.Email = "matiasferreyra82@outlook.com.ar";
-            mail.Subject = "asunto del mail";
-            mail.Body = "cuerpo del mail, prueba numero 3";
+       //public async Task EnviarMail()
+       // {
+       //     var mail = new MailRequest();
+       //     mail.Email = "matiasferreyra82@outlook.com.ar";
+       //     mail.Subject = "asunto del mail";
+       //     mail.Body = "cuerpo del mail, prueba numero 3";
 
-            var json = JsonSerializer.Serialize(mail);
-            var contenido = new StringContent(json, Encoding.UTF8, "application/json");
-            var respuesta = await cliente.PostAsJsonAsync(url, mail);
-            if (respuesta.IsSuccessStatusCode)
-            {
-                Console.WriteLine("OK");
-            }
-        }
+       //     //var json = JsonSerializer.Serialize(mail);
+       //     //var contenido = new StringContent(json, Encoding.UTF8, "application/json");
+       //     var respuesta = await cliente.PostAsJsonAsync(url, mail);
+       //     if (respuesta.IsSuccessStatusCode)
+       //     {
+       //         Console.WriteLine("OK");
+       //     }
+       // }
     }
 }

@@ -26,7 +26,11 @@ namespace WebApplicationAlertas.Services
             {
                 var message = new MimeMessage();
                 message.From.Add(new MailboxAddress(_smtpSettings.SenderName, _smtpSettings.SenderEmail));
-                message.To.Add(new MailboxAddress("", request.Email));
+                foreach (var item in request.Email)
+                {
+                    message.To.Add(new MailboxAddress("", item));
+                }
+                //message.To.Add(new MailboxAddress("", request.Email));
                 message.Subject = request.Subject;
                 message.Body = new TextPart("html") { Text = request.Body };
 
