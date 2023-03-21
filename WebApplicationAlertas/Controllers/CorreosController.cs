@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 
 
@@ -31,6 +32,14 @@ namespace WebApplicationAlertas.Controllers
             return Ok();
         }
 
-
+        public async Task<ActionResult> GetAll()
+        {
+            var lista = await context.Correos.ToListAsync();
+            if(lista is null)
+            {
+                return NoContent();
+            }
+            return Ok(lista);
+        }
     }
 }
