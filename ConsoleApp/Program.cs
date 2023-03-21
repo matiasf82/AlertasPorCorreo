@@ -5,4 +5,4 @@ Console.WriteLine("Presione una tecla");
 Console.ReadKey();
 
 var obj = new Metodos();
-await obj.Enviar();
+await obj.EnviarPostAsync();

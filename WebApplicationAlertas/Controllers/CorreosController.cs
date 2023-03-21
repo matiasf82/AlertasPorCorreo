@@ -17,6 +17,7 @@ namespace WebApplicationAlertas.Controllers
             this.context = context;
         }
 
+
         [HttpPost("Insertar")]
         public async Task<ActionResult> Insertar(Correo correo)
         {
@@ -29,5 +30,7 @@ namespace WebApplicationAlertas.Controllers
             await context.SaveChangesAsync();
             return Ok();
         }
+
+
     }
 }
