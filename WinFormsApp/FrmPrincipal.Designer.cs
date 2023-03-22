@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp
 {
-    partial class Form1
+    partial class FrmPrincipal
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             label1 = new Label();
             label2 = new Label();
@@ -89,7 +90,7 @@
             // 
             // BtnEnviar
             // 
-            BtnEnviar.BackColor = Color.DarkSlateBlue;
+            BtnEnviar.BackColor = Color.SlateBlue;
             BtnEnviar.Cursor = Cursors.Hand;
             BtnEnviar.FlatAppearance.BorderColor = Color.White;
             BtnEnviar.FlatStyle = FlatStyle.Flat;
@@ -111,24 +112,35 @@
             // 
             DataDirecciones.AllowUserToAddRows = false;
             DataDirecciones.AllowUserToDeleteRows = false;
-            DataDirecciones.BackgroundColor = Color.Indigo;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.Indigo;
-            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            DataDirecciones.AllowUserToResizeColumns = false;
+            DataDirecciones.AllowUserToResizeRows = false;
+            DataDirecciones.BackgroundColor = Color.DarkSlateBlue;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.DimGray;
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            DataDirecciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            DataDirecciones.ColumnHeadersHeight = 28;
+            DataDirecciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            DataDirecciones.Columns.AddRange(new DataGridViewColumn[] { correo, quitar });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.DimGray;
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridViewCellStyle2.ForeColor = Color.White;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            DataDirecciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            DataDirecciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataDirecciones.Columns.AddRange(new DataGridViewColumn[] { correo, quitar });
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            DataDirecciones.DefaultCellStyle = dataGridViewCellStyle2;
             DataDirecciones.EnableHeadersVisualStyles = false;
             DataDirecciones.Location = new Point(12, 91);
             DataDirecciones.Name = "DataDirecciones";
             DataDirecciones.ReadOnly = true;
             DataDirecciones.RowHeadersVisible = false;
             DataDirecciones.RowTemplate.Height = 25;
-            DataDirecciones.Size = new Size(419, 105);
+            DataDirecciones.Size = new Size(419, 114);
             DataDirecciones.TabIndex = 7;
             // 
             // correo
@@ -140,6 +152,7 @@
             // 
             // quitar
             // 
+            quitar.FlatStyle = FlatStyle.Popup;
             quitar.HeaderText = "Quitar";
             quitar.Name = "quitar";
             quitar.ReadOnly = true;
@@ -162,11 +175,11 @@
             BtnAgregar.UseVisualStyleBackColor = false;
             BtnAgregar.Click += BtnAgregar_Click;
             // 
-            // Form1
+            // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Indigo;
+            BackColor = Color.DarkSlateBlue;
             ClientSize = new Size(445, 470);
             Controls.Add(BtnAgregar);
             Controls.Add(DataDirecciones);
@@ -180,7 +193,7 @@
             ForeColor = Color.White;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            Name = "Form1";
+            Name = "FrmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Enviar Correos";
             ((System.ComponentModel.ISupportInitialize)DataDirecciones).EndInit();
@@ -197,8 +210,8 @@
         private TextBox TxtMensaje;
         private FontAwesome.Sharp.IconButton BtnEnviar;
         private DataGridView DataDirecciones;
+        private FontAwesome.Sharp.IconButton BtnAgregar;
         private DataGridViewTextBoxColumn correo;
         private DataGridViewButtonColumn quitar;
-        private FontAwesome.Sharp.IconButton BtnAgregar;
     }
 }

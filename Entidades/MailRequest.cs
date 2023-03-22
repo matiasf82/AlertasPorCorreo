@@ -8,7 +8,7 @@ namespace Entidades
 {
     public class MailRequest
     {
-        public List<string> Email { get; set; }
+        public List<string>? Email { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
     }

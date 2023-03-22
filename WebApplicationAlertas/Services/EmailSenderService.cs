@@ -9,7 +9,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace WebApplicationAlertas.Services
 {
-    public class EmailSenderService : ControllerBase ,IEmailSenderService
+    public class EmailSenderService : ControllerBase, IEmailSenderService
     {
         private readonly SmtpSettings _smtpSettings;
         private readonly ApplicationDbContext context;

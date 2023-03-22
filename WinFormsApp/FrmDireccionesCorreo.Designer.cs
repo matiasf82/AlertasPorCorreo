@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataDirecciones = new DataGridView();
             correo = new DataGridViewTextBoxColumn();
-            seleccionar = new DataGridViewButtonColumn();
+            seleccionar = new DataGridViewCheckBoxColumn();
             BtnAgregar = new FontAwesome.Sharp.IconButton();
             BtnCancelar = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)DataDirecciones).BeginInit();
@@ -41,23 +42,30 @@
             // 
             DataDirecciones.AllowUserToAddRows = false;
             DataDirecciones.AllowUserToDeleteRows = false;
-            DataDirecciones.BackgroundColor = Color.Indigo;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.Indigo;
+            DataDirecciones.BackgroundColor = Color.DarkSlateBlue;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = Color.DimGray;
+            dataGridViewCellStyle1.Font = new Font("Century Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            DataDirecciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            DataDirecciones.ColumnHeadersHeight = 30;
+            DataDirecciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            DataDirecciones.Columns.AddRange(new DataGridViewColumn[] { correo, seleccionar });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.DimGray;
             dataGridViewCellStyle2.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridViewCellStyle2.ForeColor = Color.White;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            DataDirecciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            DataDirecciones.ColumnHeadersHeight = 30;
-            DataDirecciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            DataDirecciones.Columns.AddRange(new DataGridViewColumn[] { correo, seleccionar });
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            DataDirecciones.DefaultCellStyle = dataGridViewCellStyle2;
             DataDirecciones.Dock = DockStyle.Top;
             DataDirecciones.EnableHeadersVisualStyles = false;
             DataDirecciones.Location = new Point(0, 0);
             DataDirecciones.Name = "DataDirecciones";
-            DataDirecciones.ReadOnly = true;
             DataDirecciones.RowHeadersVisible = false;
             DataDirecciones.RowTemplate.Height = 25;
             DataDirecciones.Size = new Size(437, 200);
@@ -67,18 +75,17 @@
             // 
             correo.HeaderText = "Correo";
             correo.Name = "correo";
-            correo.ReadOnly = true;
             correo.Width = 330;
             // 
             // seleccionar
             // 
             seleccionar.HeaderText = "Seleccionar";
             seleccionar.Name = "seleccionar";
-            seleccionar.ReadOnly = true;
+            seleccionar.Resizable = DataGridViewTriState.True;
             // 
             // BtnAgregar
             // 
-            BtnAgregar.BackColor = Color.DarkSlateBlue;
+            BtnAgregar.BackColor = Color.SlateBlue;
             BtnAgregar.Cursor = Cursors.Hand;
             BtnAgregar.FlatAppearance.BorderColor = Color.White;
             BtnAgregar.FlatStyle = FlatStyle.Flat;
@@ -89,14 +96,15 @@
             BtnAgregar.IconSize = 30;
             BtnAgregar.Location = new Point(0, 211);
             BtnAgregar.Name = "BtnAgregar";
-            BtnAgregar.Size = new Size(198, 28);
+            BtnAgregar.Size = new Size(198, 25);
             BtnAgregar.TabIndex = 9;
-            BtnAgregar.Text = "Agregar";
+            BtnAgregar.Text = "Aceptar";
             BtnAgregar.UseVisualStyleBackColor = false;
+            BtnAgregar.Click += BtnAgregar_Click;
             // 
             // BtnCancelar
             // 
-            BtnCancelar.BackColor = Color.DarkSlateBlue;
+            BtnCancelar.BackColor = Color.SlateBlue;
             BtnCancelar.Cursor = Cursors.Hand;
             BtnCancelar.FlatAppearance.BorderColor = Color.White;
             BtnCancelar.FlatStyle = FlatStyle.Flat;
@@ -107,16 +115,17 @@
             BtnCancelar.IconSize = 30;
             BtnCancelar.Location = new Point(234, 212);
             BtnCancelar.Name = "BtnCancelar";
-            BtnCancelar.Size = new Size(198, 28);
+            BtnCancelar.Size = new Size(198, 25);
             BtnCancelar.TabIndex = 10;
             BtnCancelar.Text = "Cancelar";
             BtnCancelar.UseVisualStyleBackColor = false;
+            BtnCancelar.Click += BtnCancelar_Click;
             // 
             // FrmDireccionesCorreo
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Indigo;
+            BackColor = Color.DarkSlateBlue;
             ClientSize = new Size(437, 248);
             Controls.Add(BtnCancelar);
             Controls.Add(BtnAgregar);
@@ -126,6 +135,7 @@
             Name = "FrmDireccionesCorreo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Direcciones";
+            Load += FrmDireccionesCorreo_Load;
             ((System.ComponentModel.ISupportInitialize)DataDirecciones).EndInit();
             ResumeLayout(false);
         }
@@ -133,9 +143,9 @@
         #endregion
 
         private DataGridView DataDirecciones;
-        private DataGridViewTextBoxColumn correo;
-        private DataGridViewButtonColumn seleccionar;
         private FontAwesome.Sharp.IconButton BtnAgregar;
         private FontAwesome.Sharp.IconButton BtnCancelar;
+        private DataGridViewTextBoxColumn correo;
+        private DataGridViewCheckBoxColumn seleccionar;
     }
 }
