@@ -1,0 +1,1 @@
+Solucion que permite mandar un correo desde una cuenta de gmail, usando una api. EL correo se manda usando una app en win forms y en una app de consola
